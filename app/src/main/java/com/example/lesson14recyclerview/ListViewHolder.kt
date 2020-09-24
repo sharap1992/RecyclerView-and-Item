@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item.view.*
 
 class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-    private val tvTitle: TextView = itemView.tvTitle
-    private val tvDescription: TextView = itemView.tvDescription
+    private val tvTitle: TextView = itemView.Name
+    private val tvDescription: TextView = itemView.Surname
 
-    fun populateModel(user: User, activity: MainActivity) {
-        tvTitle.text = user.title
-        tvDescription.text = user.description
+    fun populateModel(sss: User, activity: MainActivity) {
+        tvTitle.text = sss.name1
+        tvDescription.text = sss.name2
         itemView.setOnClickListener {
-            activity.onItemClicked(user)
+            activity.onItemClicked(sss)
         }
     }
 }

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val adapter: ListAdapter = ListAdapter(this)
+    private var number: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,22 +22,34 @@ class MainActivity : AppCompatActivity() {
         recyclerview.adapter = adapter
         recyclerview.layoutManager = GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false)
         recyclerview.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        setData()
+        setAl()
     }
-    private fun setData() {
+    fun setAl() {
         val models: MutableList<User> = mutableListOf()
-        for (i in 0 until 1) {
+        val model: User = User()
+        model.name1 = "Title 1"
+        model.name2 = "Description 1"
+        model.count = 1
+        models.add(model)
+        adapter.setData(models)
+    }
+
+    private fun setAl2(user: User) {
+        val models: MutableList<User> = mutableListOf()
+        for (i in 1 .. number+user.count) {
             val model: User = User()
-            model.title = "Title ${i+1}"
-            model.description = "Description ${i+1}"
+            model.name1 = "Title $i"
+            model.name2 = "Description $i"
+            model.count = i
+            number = i
             models.add(model)
         }
         adapter.setData(models)
     }
 
+
     fun onItemClicked(user: User) {
-        val createdRecyclerView = RecyclerView(this)
-        recyclerview.layoutManager = GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false)
-        recyclerview.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        setAl2(user)
+
      }
 }
